@@ -2,7 +2,7 @@
 // admin/edit_article.php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /rewriting3311/admin/login.php");
+    header("Location: /rewriting/admin/login.php");
     exit;
 }
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $new_filename = uniqid('img_') . '.' . $ext;
         $dest = $upload_dir . $new_filename;
         
-        move_uploaded_file($tmp_name, $dest); $savedPath = $dest;
+        $savedPath = compressImage($tmp_name, $dest, 20);
         $header_image_path = 'uploads/' . basename($savedPath);
     }
     
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $article['image_alt'] = $image_alt;
             
             // Purger le cache
-            
+            $pdo->query("DELETE FROM page_cache");
         } else {
             $error = "Erreur lors de la modification.";
         }
@@ -129,4 +129,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </body>
 </html>
-

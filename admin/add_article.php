@@ -2,7 +2,7 @@
 // admin/add_article.php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /rewriting3311/admin/login.php");
+    header("Location: /rewriting/admin/login.php");
     exit;
 }
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // La consigne : "l'image sera compresser a max pour l'optimisation"
         // Qualité faible (ex: 20 sur 100 pour compresser un max)
-        move_uploaded_file($tmp_name, $dest); $savedPath = $dest;
+        $savedPath = compressImage($tmp_name, $dest, 20);
         
         $header_image_path = 'uploads/' . basename($savedPath);
     }
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // On vide le cache car un nouvel article est là (l'accueil doit être mise à jour)
             // Dans un vrai projet de prod, on supprimerait que la home
-            
+            $pdo->query("DELETE FROM page_cache");
         } else {
             $error = "Erreur lors de l'ajout.";
         }
@@ -139,5 +139,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </body>
 </html>
-
-

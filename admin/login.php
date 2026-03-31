@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
-        header("Location: /rewriting3311/admin/dashboard.php");
+        header("Location: /rewriting/admin/dashboard.php");
         exit;
     } else {
         $error = "Identifiants invalides.";
@@ -89,8 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <button type="submit">Se connecter</button>
         </form>
-        <a href="/rewriting3311/" class="back-btn">&larr; Retour au site public</a>
+        <a href="/rewriting/" class="back-btn">&larr; Retour au site public</a>
     </div>
 </body>
 </html>
-

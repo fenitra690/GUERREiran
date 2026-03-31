@@ -68,4 +68,3 @@ $stmt->execute($article2);
 
 echo "Base de données prête ! Les tables sont créées et un compte par défaut (user: prof, password: prof) a été ajouté.";
 ?>
-

@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 
 # Installation des dépendances pour SQLite, la librairie d'images GD et autres
 RUN apt-get update && apt-get install -y \
@@ -18,15 +18,14 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 # Activation du module de réécriture d'URL (mod_rewrite) indispensable pour le projet
 RUN a2enmod rewrite
 # Activation de mod_headers et mod_deflate pour les optimisations SEO/Performance
-RUN a2enmod headers deflate 
+RUN a2enmod headers deflate expires
 
-# Définition du répertoire de travail (l'application semble utiliser le chemin /rewriting3311/)
-WORKDIR /var/www/html/rewriting3311
+# Définition du répertoire de travail (l'application semble utiliser le chemin /rewriting/)
+WORKDIR /var/www/html/rewriting
 
 # Copier les fichiers du projet dans le conteneur
-COPY . /var/www/html/rewriting3311/
+COPY . /var/www/html/rewriting/
 
 # Assurer que le serveur web a les permissions d'écriture pour SQLite, le cache et les images
-RUN chown -R www-data:www-data /var/www/html/rewriting3311 \
-    && chmod -R 775 /var/www/html/rewriting3311
-
+RUN chown -R www-data:www-data /var/www/html/rewriting \
+    && chmod -R 775 /var/www/html/rewriting

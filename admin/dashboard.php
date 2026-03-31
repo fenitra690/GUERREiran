@@ -2,7 +2,7 @@
 // admin/dashboard.php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /rewriting3311/admin/login.php");
+    header("Location: /rewriting/admin/login.php");
     exit;
 }
 
@@ -71,7 +71,7 @@ $articles = $stmt->fetchAll();
         <div class="admin-nav">
             <a href="add_article.php" class="btn">+ Ajouter un nouvel article</a>
             <div class="nav-links-right">
-                <a href="/rewriting3311/" target="_blank" class="btn btn-outline">Voir le site</a>
+                <a href="/rewriting/" target="_blank" class="btn btn-outline">Voir le site</a>
                 <a href="logout.php" class="btn btn-danger">Déconnexion</a>
             </div>
         </div>
@@ -94,7 +94,7 @@ $articles = $stmt->fetchAll();
                     <td><?php echo date('d/m/Y H:i', strtotime($a['created_at'])); ?></td>
                     <td><span class="status-badge"><?php echo $a['is_published'] ? 'Publié' : 'Brouillon'; ?></span></td>
                     <td class="actions">
-                        <a href="/rewriting3311/article/<?php echo $a['slug']; ?>-<?php echo $a['id']; ?>.html" target="_blank" class="view-link">Voir</a>
+                        <a href="/rewriting/article/<?php echo $a['slug']; ?>-<?php echo $a['id']; ?>.html" target="_blank" class="view-link">Voir</a>
                         <a href="edit_article.php?id=<?php echo $a['id']; ?>" class="edit-link">Modifier</a>
                         <a href="delete_article.php?id=<?php echo $a['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');" class="delete-link">Supprimer</a>
                     </td>
@@ -105,4 +105,3 @@ $articles = $stmt->fetchAll();
     </div>
 </body>
 </html>
-

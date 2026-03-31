@@ -2,7 +2,7 @@
 // admin/delete_article.php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /rewriting3311/admin/login.php");
+    header("Location: /rewriting/admin/login.php");
     exit;
 }
 
@@ -19,4 +19,3 @@ if ($id) {
 
 header("Location: dashboard.php");
 exit;
-

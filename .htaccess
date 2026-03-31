@@ -1,0 +1,23 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteBase /rewriting/
+
+# Ne pas réécrire si c'est un fichier existant (css, js, images)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Routes classiques (pour admin par ex. et accueil)
+RewriteRule ^admin/ - [L]
+
+# URL Rewriting Multiples (Plusieurs formats d'URL vers la même page pour un même ID)
+# Format 1 : Classique (ex: guerre-en-iran-123.html)
+RewriteRule ^article/([a-z0-9\-]+)-([0-9]+)\.html$ index.php?req=article&id=$2 [QSA,L]
+
+# Format 2 : Court (ex: actualite-123.html)
+RewriteRule ^actualite-([0-9]+)\.html$ index.php?req=article&id=$1 [QSA,L]
+
+# Format 3 : Dossier News (ex: news/123/guerre-en-iran)
+RewriteRule ^news/([0-9]+)/.*$ index.php?req=article&id=$1 [QSA,L]
+
+# Accueil par défaut
+RewriteRule ^$ index.php?req=home [L]

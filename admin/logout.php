@@ -2,6 +2,5 @@
 // admin/logout.php
 session_start();
 session_destroy();
-header("Location: /rewriting3311/admin/login.php");
+header("Location: /rewriting/admin/login.php");
 exit;
-
