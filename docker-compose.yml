@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: infolibre_php_app
+    ports:
+      - "8080:80" # Maps port 8080 on the host to port 80 in the container
+    volumes:
+      - ./:/var/www/html/rewriting3311 # Mounts the current directory into the container
+    restart: unless-stopped
+
